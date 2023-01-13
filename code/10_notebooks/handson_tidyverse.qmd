@@ -55,7 +55,19 @@ Look through the data. Check
 :::
 
 ```{r}
-# Your Codes Here
+# Take a look to the `country` variable.
+
+fertility |>
+  select('country') |>
+  glimpse()
+
+# Check NAs.
+
+fertility |>
+  select('country') |>
+  is.na() |>
+  table()
+
 ```
 
 
@@ -68,7 +80,7 @@ Let's focus only on OECD countries.
 Using the following vector `oecd`, choose only OECD-member countries.
 
 ```{r}
-#remotes::install_github("caldwellst/whotilities")
+remotes::install_github("caldwellst/whotilities")
 oecd <- whoville::oecd_member_states()
 ```
 
@@ -76,6 +88,10 @@ oecd <- whoville::oecd_member_states()
 
 ```{r}
 # Your Codes Here
+
+fertility |>
+  filter(iso3c %in% oecd)
+
 ```
 
 ::: {.callout-tip}
@@ -92,11 +108,23 @@ I know the second one is tough. See the answer if you want.
 :::
 
 ```{r}
-# Your Codes Here
+# Mean of fertility rate by country
+
+fertility |>
+  filter(iso3c %in% oecd) |> # get OECD country subset
+  group_by(country) |> # Group dataset by country
+  summarize(mean_fertility = mean(fertility, na.rm = TRUE))
+
 ```
 
 ```{r}
 # Your Codes Here
+
+unpaid_male |> 
+  group_by(country) |>
+  #sort('year') |>
+  top_n(n=1, year) # Get the first n rows of the dataset.
+
 ```
 
 
@@ -110,6 +138,9 @@ Merge the two data frames you got in the last question.
 
 ```{r}
 # Your Codes Here
+df_new <-
+  fertility |>
+  left_join(unpaid_male, by = c('country', 'year'))
 ```
 
 ## `ggplot2`
@@ -130,6 +161,11 @@ To make it better, try
 
 ```{r}
 # Your Codes Here
+
+df_new |>
+filter(iso3c.x %in% oecd) |>
+  ggplot(aes(x=hour_unpaid, y = fertility)) +
+  geom_point()
 ```
 
 
