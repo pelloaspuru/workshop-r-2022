@@ -1,4 +1,6 @@
-# Notes of the class
+# My notes of the class
+
+- Check R version by running ``R.Version()``.
 
 ## tidyverse package
 
@@ -18,3 +20,6 @@
 - Connects layers by ``+`` instead of ``|>``.
     - still, ``penguins  |> ggpot(aes(x = , y = )) + geom_point()``
 - ``facet_wrap()`` generates several graphs by category, with shared axes.
+- ``coord_cartesian()`` to zoom in an area, while keeping the observations outside the range to compute fit line, for instance.
+
+
