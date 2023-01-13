@@ -23,7 +23,7 @@ You can load them by the `WDI` package.
 
 ```{r}
 library(tidyverse)
-library(WDI)
+library(WDI) # World Development Indicators package.
 
 fertility <- WDI(indicator = "SP.DYN.TFRT.IN", start = 2010, end = 2019) |>
   rename(fertility = "SP.DYN.TFRT.IN")
