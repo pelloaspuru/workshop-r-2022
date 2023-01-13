@@ -16,3 +16,5 @@
 
 - ggplot meaning grammar of graphics.
 - Connects layers by ``+`` instead of ``|>``.
+    - still, ``penguins  |> ggpot(aes(x = , y = )) + geom_point()``
+- ``facet_wrap()`` generates several graphs by category, with shared axes.
